@@ -23,7 +23,7 @@
 }
 .post-content{
     word-wrap: break-word;
-    white-space: pre-wrap;
+    /*white-space: pre-wrap;*/
     font-size: 0.37037rem;
     color:#5c5c5c;
     /*padding: 0 0.277778rem 0.898148rem;*/
