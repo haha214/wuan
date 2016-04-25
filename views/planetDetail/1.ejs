@@ -12,7 +12,7 @@
               <% posts.forEach(function(item) { %>
                 <div class="chapter">
                   <h2><a href="/postDetail/<%=item.postID%>" title=""><%=item.title%></a></h2>
-                  <p><%-item.text%></p>
+                  <div class="chapter-text"><%-item.text%></div>
                   <div class="chapter-info">
                     <span><a href="#?" title=""><%=item.nickname%></a></span>
                     <span>发表于</span>
@@ -39,7 +39,7 @@
          {{each posts as item i}}
             <div class="chapter">
               <h2><a href="/postDetail/{{item.postID}}" title="">{{item.title}}</a></h2>
-              <p>{{#item.text}}</p>
+              <div class="chapter-text">{{#item.text}}</div>
               <div class="chapter-info">
                   <span><a href="#?" title="">{{item.nickname}}</a></span>
                   <span>发表于</span>
