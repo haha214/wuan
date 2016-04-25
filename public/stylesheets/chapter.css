@@ -18,19 +18,13 @@
 .chapter>h2>a{
     color:#363636;
 }
-.chapter>p{
-    font-size: 0.37037rem;
-    margin-bottom: 0.231481rem;
-    color:#5c5c5c;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-}
 /*列表正文*/
 .chapter-text{
     font-size: 0.37037rem;
     margin-bottom: 0.231481rem;
     color:#5c5c5c;
     word-wrap: break-word;
+    text-overflow: ellipsis;
     /*white-space: pre-wrap;*/
 }
 .chapter-img{
@@ -75,11 +69,6 @@
     }
     .chapter>h2>a{
         color:#5ab8fe;
-    }
-    .chapter>p{
-        font-size: 14px;
-        color:#5c5c5c;
-        margin-bottom: 9px;
     }
     /*列表正文*/
     .chapter-text{
