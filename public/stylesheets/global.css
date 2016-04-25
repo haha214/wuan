@@ -328,6 +328,15 @@ span.navbar-account-item{
 .sidebar-extend .main{
     left:5.555556rem; 
 }
+/*侧栏出现时main上层遮罩*/
+.sidebar-extend .main-mask{
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index: 1;
+    position: absolute;
+}
 .sidebar-extend .main,.sidebar-extend .navbar-header{
     -webkit-animation: open .35s ease-in-out;
     -moz-animation: open .35s ease-in-out;
@@ -358,6 +367,9 @@ span.navbar-account-item{
     }
     .main-page{
         padding-bottom: 70px;
+    }
+    .main-mask{
+        display:none!important;
     }
 }
 /*当前位置*/
