@@ -22,8 +22,8 @@
                 cpForm: $(".cp-form"),
                 verificate: function(){
                     var myreg = /^[0-9a-zA-Z\u4E00-\u9FA5\_]*$/;
-                    if (this.pName.val().length<1 || this.pName.val().length>20) {
-                        sweetAlert("格式错误","请输入1-20位字符做为星球名称","warning");
+                    if (this.pName.val().length<1 || this.pName.val().length>14) {
+                        sweetAlert("格式错误","请输入1-14位字符做为星球名称","warning");
                         return false;
                     }
                     if (!myreg.test(this.pName.val())) {
