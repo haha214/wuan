@@ -1,4 +1,17 @@
+<%if(ag&&ag.Mobile==true){%>
+<script type="text/javascript" src="javascripts/zepto.js"></script>
+<script type="text/javascript" src="javascripts/zepto_touch.js"></script>
+<script type="text/javascript" src="javascripts/wangEditor-mobile.min.js"></script>
+<%}else{%>
+<script type="text/javascript" src="javascripts/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="javascripts/wangEditor.min.js"></script>
+<%}%>
+<script src="javascripts/sweetAlert.js" type="text/javascript" charset="utf-8"></script>
+<script src="javascripts/template.js" type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript">
+    // Click事件判断
+    var WuanClickEvent = <%=ag.Mobile%>?"touchend":"click";
     //本地存储用户昵称
     var userName = localStorage.getItem("userName");
     //本地存储用户ID
@@ -39,16 +52,16 @@
                 logout: $("#nav-logout"),
                 bindEvent:function(){
                 	var self = this;
-                	self.logout.on("click", function(event){
+                	self.logout.on(WuanClickEvent, function(event){
                 		event.preventDefault();
-                        $.ajax({
-                           type:"post",
-                            async: true,
-                            url: "/isLogin",
-                            error: function(x, h, r) {
-                                    console && console.log(x, h, r);
-                                } 
-                        });
+                        // $.ajax({
+                        //    type:"post",
+                        //     async: true,
+                        //     url: "/isLogin",
+                        //     error: function(x, h, r) {
+                        //             console && console.log(x, h, r);
+                        //         } 
+                        // });
                 		$.ajax({
                                 type: "get",
                                 async: true,
@@ -85,10 +98,10 @@
 	$(document).ready(function() {
 		setMinHeight();
 		setCenterLoadingDiv();
-        $(".navbar-toggle").on('click',function(){
+        $(".navbar-toggle").on(WuanClickEvent,function(){
             $(".all-wrapper").toggleClass('sidebar-extend');
             if ($(".all-wrapper").hasClass('sidebar-extend')) {
-                    $(".main-mask").on('click',function(){
+                    $(".main-mask").on(WuanClickEvent,function(){
                         $(".all-wrapper").removeClass('sidebar-extend');
                     });
                   } 

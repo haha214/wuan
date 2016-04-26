@@ -1,16 +1,14 @@
 <%- include base/header.ejs %>
-<%- include base/planetAllH.ejs %>
-<%- include base/navbar.ejs %>
         <div class="main main-page">
             <div class="main-mask"></div>
             <div class="location clearfix">
                 <h1><a href="/planetAll" title="">全部星球</a></h1>
                 <a href="" title="">创建星球</a>
             </div>
-            <%if(lists.length > 0){%>
+            <%if(result.lists.length > 0){%>
             <div class="planet"> 
                 <ul class="clearfix">
-                    <% lists.forEach(function(item) { %>
+                    <% result.lists.forEach(function(item) { %>
                         <li class="planet-item clearfix col-sm-4"> 
                             <div class="planet-pic">
                                 <a href="#?" title=""><img src="images/planet-pic_03.jpg" alt=""></a>
@@ -30,11 +28,10 @@
             <%}%>
             <div class="page-turn">
                 <span><a href="#?" title="">上一页</a></span>
-                <span><%=currentPage%>/<%=pageCount%></span>
+                <span><%=result.currentPage%>/<%=result.pageCount%></span>
                 <span><a href="#?" title="">下一页</a></span>
             </div>
         </div>
-        <%- include base/importJS.ejs %>
         <%- include base/baseJS.ejs %>
         <script type="text/html" id="planet-list">
              {{each lists as item i}}
@@ -61,8 +58,8 @@
                 currentpage: 1,
                 pageCount: 0,
                 ClientData: function() {
-                    this.currentpage = <%=currentPage%>;
-                    this.pageCount = <%=pageCount%>;
+                    this.currentpage = <%=result.currentPage%>;
+                    this.pageCount = <%=result.pageCount%>;
                 },
                 navActive:function(){
                     this.nav_planetA.addClass("navbar-active");
@@ -75,7 +72,7 @@
                 },
                 bindEvent: function() {
                     var self = this;
-                    self.pre.on('click', function() {
+                    self.pre.on(WuanClickEvent, function() {
                         if (self.currentpage == 1) {
                             sweetAlert('错误', '当前页是第一页', 'error');
                         } else {
@@ -93,7 +90,7 @@
                             });
                         }
                     });
-                    self.next.on('click', function() {
+                    self.next.on(WuanClickEvent, function() {
                         if (self.currentpage == self.pageCount) {
                             sweetAlert('错误', '当前页是最后一页', 'error');
                         } else {
@@ -111,7 +108,7 @@
                             });
                         }
                     });
-                    self.createPBtn.on('click',function(){
+                    self.createPBtn.on(WuanClickEvent,function(){
                         event.preventDefault();
                         if (localStorage.getItem("userName")!=null){
                             window.location.href = '/createPlanet';

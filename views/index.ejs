@@ -1,14 +1,12 @@
 <%- include base/header.ejs %>
-<%- include base/indexHeader.ejs %>
-<%- include base/navbar.ejs %>
 	<div class="main main-page">
 		<div class="main-mask"></div>
 		<div class="location clearfix">
 			<h1><a href="" title="">首页</a></h1>
 		</div>
-		<%if(posts.length > 0){%>
+		<%if(result.posts.length > 0){%>
 		<div class="chapter-col">
-			<% posts.forEach(function(item) { %>
+			<% result.posts.forEach(function(item) { %>
 				<div class="chapter">
 					<h2><a href="/postDetail/<%=item.postID%>" title=""><%=item.title%></a></h2>
 					<div class="chapter-text"><%-item.text%></div>
@@ -28,11 +26,10 @@
          <%}%>
 		<div class="page-turn">
 			<span><a href="#?" title="">上一页</a></span>
-			<span><%=currentPage%>/<%=pageCount%></span>
+			<span><%=result.currentPage%>/<%=result.pageCount%></span>
 			<span><a href="#?" title="">下一页</a></span>
 		</div>
 	</div>
-	<%- include base/importJS.ejs %>
 	<%- include base/baseJS.ejs %>
 	    <script type="text/html" id="listtemplate">
 	    	 {{each posts as item i}}
@@ -74,8 +71,8 @@
 				currentpage: 1,
 				pageCount: 0,
 				ClientData: function() {
-					this.currentpage = <%=currentPage%>;
-					this.pageCount = <%=pageCount%>;
+					this.currentpage = <%=result.currentPage%>;
+					this.pageCount = <%=result.pageCount%>;
 				},
 				navActive:function(){
                     this.nav_home.addClass("navbar-active");
@@ -88,7 +85,7 @@
 				},
 				bindEvent: function() {
 					var self = this;
-					self.pre.on('click', function() {
+					self.pre.on(WuanClickEvent, function() {
 						if (self.currentpage == 1) {
 							sweetAlert('错误', '当前页是第一页', 'error');
 						} else {
@@ -106,7 +103,7 @@
 							});
 						}
 					});
-					self.next.on('click', function() {
+					self.next.on(WuanClickEvent, function() {
 						if (self.currentpage == self.pageCount) {
 							sweetAlert('错误', '当前页是最后一页', 'error');
 						} else {
