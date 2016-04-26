@@ -2,15 +2,17 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var config = require('../config/config');
+var ua = require('mobile-agent');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+	var agent = ua(req.headers['user-agent']);
 	request(config.server + "demo/?service=Group.Lists",function(error, response, body) {
 			if (!error) {
 				console.log('Planet Success:OK');
 				var result = JSON.parse(body);
 				if (result.ret == 200 && result.msg == "") {
-					res.render('planetAll', result.data);
+					res.render('planetAll', {'result':result.data,'ag': agent});
 				}
 			} else {
 				console.error('PlanetAll failed:', err);

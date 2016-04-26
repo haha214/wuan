@@ -2,10 +2,12 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var config = require('../config/config');
+var ua = require('mobile-agent');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.render('register', {});
+    var agent = ua(req.headers['user-agent']);
+    res.render('register', {'ag': agent});
 });
 router.post('/', function(req, res, next) {
     request.post({

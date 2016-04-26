@@ -7,7 +7,7 @@ var ua = require('mobile-agent');
 /* GET users listing. */
 router.get('/:groupid', function(req, res, next) {
 	var agent = ua(req.headers['user-agent']);
-	res.render('post/' + req.param("groupid"), {'result':req.param("groupid"),'ag': agent});
+	res.render('post', {'result':req.param("groupid"),'ag': agent});
 });
 
 router.post('/:groupid', function(req, res, next) {
